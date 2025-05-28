@@ -37,7 +37,7 @@ public class ManageApi {
 
     // 添加管理员-管理员信息修改
     @PostMapping("/save")
-    public ResponseEntity<ReturnInfo> login(admin admin) {
+    public ResponseEntity<ReturnInfo> login(@RequestBody admin admin) {
         try {
             manageService.saveAdmin(admin);
             return ResponseEntity.ok()
@@ -50,7 +50,7 @@ public class ManageApi {
 
     // minifo修改参数
     @PostMapping("/minfo/save")
-    public ResponseEntity<ReturnInfo> saveMinfo(minfo minfo) {
+    public ResponseEntity<ReturnInfo> saveMinfo(@RequestBody minfo minfo) {
         try {
             manageService.saveMinfo(minfo);
             return ResponseEntity.ok()
@@ -63,7 +63,7 @@ public class ManageApi {
 
     // xlist 增删改查
     @PostMapping("/xlist/save")
-    public ResponseEntity<ReturnInfo> saveXlist(xlist xlist) {
+    public ResponseEntity<ReturnInfo> saveXlist(@RequestBody xlist xlist) {
         try {
             manageService.saveXlist(xlist);
             return ResponseEntity.ok()
@@ -88,7 +88,7 @@ public class ManageApi {
     }
 
     @PostMapping("/xlist/list")
-    public ResponseEntity<ReturnInfo> getXlist(ListPage listPage) {
+    public ResponseEntity<ReturnInfo> getXlist(@RequestBody ListPage listPage) {
         try {
             List<xlist> list = manageService.getXlist(listPage);
             return ResponseEntity.ok()
@@ -102,7 +102,7 @@ public class ManageApi {
 
     // ylist 增删改查
     @PostMapping("/ylist/save")
-    public ResponseEntity<ReturnInfo> savYlist(ylist ylist) {
+    public ResponseEntity<ReturnInfo> savYlist(@RequestBody ylist ylist) {
         try {
             manageService.saveYlist(ylist);
             return ResponseEntity.ok()
@@ -127,7 +127,7 @@ public class ManageApi {
     }
 
     @PostMapping("/ylist/list")
-    public ResponseEntity<ReturnInfo> getYlist(ListPage listPage) {
+    public ResponseEntity<ReturnInfo> getYlist(@RequestBody ListPage listPage) {
         try {
             List<xlist> list = manageService.getYlist(listPage);
             return ResponseEntity.ok()
