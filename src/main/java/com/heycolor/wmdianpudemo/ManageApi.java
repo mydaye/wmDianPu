@@ -4,7 +4,6 @@ package com.heycolor.wmdianpudemo;
 import com.heycolor.wmdianpudemo.constant.ReturnInfo;
 import com.heycolor.wmdianpudemo.myBean.*;
 import com.heycolor.wmdianpudemo.service.ManageService;
-import com.heycolor.wmdianpudemo.constant.BuzException;
 import jakarta.annotation.Resource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +24,7 @@ public class ManageApi {
     // 登录
     // 固定账号密码 admin
     @PostMapping("/login")
-    public ResponseEntity<ReturnInfo> login(LoginDTO loginDTO) {
+    public ResponseEntity<ReturnInfo> login(@RequestBody LoginDTO loginDTO) {
         try {
             manageService.login(loginDTO);
             return ResponseEntity.ok()
