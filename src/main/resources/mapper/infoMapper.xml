@@ -2,6 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="com.heycolor.wmdianpudemo.mapper.infoMapper">
+
+    <select id="userLogin" resultType="com.heycolor.wmdianpudemo.myBean.admin" >
+        SELECT * FROM admin WHERE apptype = #{apptype} And code = #{code}
+    </select>
+
     <select id="selectInfo" resultType="com.heycolor.wmdianpudemo.myBean.minfo" >SELECT * FROM minfo</select>
 
     <select id="selectXlist" resultType="com.heycolor.wmdianpudemo.myBean.xlist" >SELECT * FROM xlist</select>

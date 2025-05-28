@@ -2,6 +2,7 @@ package com.heycolor.wmdianpudemo.myBean;
 
 public class ylist {
     private int id;
+    private int xid;
     private String tuPianUrl;
     private String txt1;
     private String txt2;
@@ -22,6 +23,14 @@ public class ylist {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getXid() {
+        return xid;
+    }
+
+    public void setXid(int xid) {
+        this.xid = xid;
     }
 
     public String getTuPianUrl() {

@@ -1,6 +1,7 @@
 package com.heycolor.wmdianpudemo.service;
 
 import com.heycolor.wmdianpudemo.mapper.infoMapper;
+import com.heycolor.wmdianpudemo.myBean.admin;
 import com.heycolor.wmdianpudemo.myBean.minfo;
 import com.heycolor.wmdianpudemo.myBean.xlist;
 import com.heycolor.wmdianpudemo.myBean.ylist;
@@ -16,6 +17,10 @@ public class infoService {
     @Autowired
     public infoService(infoMapper infomapper) {
         this.infomapper = infomapper;
+    }
+
+    public List<admin> userByLogin(String user_name, String user_psw) {
+        return this.infomapper.userLogin(user_name, user_psw);
     }
 
     public List<minfo> selectInfo() {

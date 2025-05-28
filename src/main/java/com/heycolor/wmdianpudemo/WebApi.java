@@ -1,18 +1,18 @@
 package com.heycolor.wmdianpudemo;
 
 import com.heycolor.wmdianpudemo.constant.ReturnInfo;
-import com.heycolor.wmdianpudemo.myBean.minfo;
-import com.heycolor.wmdianpudemo.myBean.xlist;
-import com.heycolor.wmdianpudemo.myBean.ylist;
+import com.heycolor.wmdianpudemo.myBean.*;
 import com.heycolor.wmdianpudemo.service.infoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static com.heycolor.wmdianpudemo.constant.StateCode.*;
@@ -24,6 +24,19 @@ public class WebApi {
     @Autowired
     public WebApi(infoService mInfo) {
         this.mInfo = mInfo;
+    }
+
+
+    @PostMapping({"/userLogin"})
+    private ResponseEntity<ReturnInfo> userToLogin(@Validated @RequestBody userLogin bao) {
+        List<admin> mData = this.mInfo.userByLogin(bao.getApptype(),bao.getCode());
+        if (mData.isEmpty()) {
+            return ResponseEntity.badRequest()
+                    .body(ReturnInfo.res(Sql_Null_error, "用户不存在或密码错误", null));
+        } else {
+            return ResponseEntity.ok()
+                    .body(ReturnInfo.res(SUCCESS, "", null));
+        }
     }
 
     @GetMapping({"/getMainInfo"})
@@ -44,9 +57,8 @@ public class WebApi {
     private ResponseEntity<ReturnInfo> getXlist() {
         List<xlist> mData = this.mInfo.selectXlist();
         if (!mData.isEmpty()) {
-            xlist b = mData.getFirst();
             return ResponseEntity.ok()
-                    .body(ReturnInfo.res(SUCCESS, "", b));
+                    .body(ReturnInfo.res(SUCCESS, "", mData));
         } else {
             return ResponseEntity.badRequest()
                     .body(ReturnInfo.res(FAILED, "没有数据", null));
@@ -57,9 +69,8 @@ public class WebApi {
     private ResponseEntity<ReturnInfo> getYlist() {
         List<ylist> mData = this.mInfo.selectYlist();
         if (!mData.isEmpty()) {
-            ylist b = mData.getFirst();
             return ResponseEntity.ok()
-                    .body(ReturnInfo.res(SUCCESS, "", b));
+                    .body(ReturnInfo.res(SUCCESS, "", mData));
         } else {
             return ResponseEntity.badRequest()
                     .body(ReturnInfo.res(FAILED, "没有数据", null));
