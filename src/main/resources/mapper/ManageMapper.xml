@@ -11,6 +11,14 @@
         INSERT INTO minfo (mp4, imgtx1, txt1, biaojia, imgtx2, txt2, txt3, txt4, txt5, marqueeText, pingjia,imgdz)
         VALUE (#{mp4}, #{imgtx1}, #{txt1}, #{biaojia}, #{imgtx2}, #{txt2}, #{txt3}, #{txt4}, #{txt5}, #{marqueeText}, #{pingjia},#{imgdz})
     </insert>
+    <insert id="addXlist">
+        INSERT INTO  xlist (showtype,txt1,txt2)
+        VALUE (#{showtype},#{txt1}, #{txt2})
+    </insert>
+    <insert id="addYlist">
+        INSERT INTO ylist (tuPianUrl, txt1, txt2, txt3, txt4, txt5, txt6, txt7, txt8, txt9, txt10, txt11, txt12 )
+        VALUES (#{tuPianUrl}, #{txt1}, #{txt2}, #{txt3}, #{txt4}, #{txt5}, #{txt6}, #{txt7}, #{txt8}, #{txt9}, #{txt10}, #{txt11}, #{txt12})
+    </insert>
     <update id="updateAdmin" >
         UPDATE admin
         SET apptype = #{apptype},
@@ -33,6 +41,38 @@
             imgdz = #{imgdz}
         WHERE id = #{id};
     </update>
+    <update id="updateXlist">
+        UPDATE xlist
+        SET showtype = #{showtype},
+            txt1 = #{txt1},
+            txt2 = #{txt2}
+        WHERE id = #{id};
+    </update>
+    <update id="updateYlist">
+        UPDATE ylist
+        SET tuPianUrl = #{tuPianUrl},
+            txt1 = #{txt1},
+            txt2 = #{txt2},
+            txt3 = #{txt3},
+            txt4 = #{txt4},
+            txt5 = #{txt5},
+            txt6 = #{txt6},
+            txt7 = #{txt7},
+            txt8 = #{txt8},
+            txt9 = #{txt9},
+            txt10 = #{txt10},
+            txt11 = #{txt11},
+            txt12 = #{txt12}
+        WHERE id = #{id};
+    </update>
+
+    <delete id="deleteXlist">
+        DELETE FROM xlist WHERE id = #{id}
+    </delete>
+
+    <delete id="deleteYlist">
+        DELETE FROM ylist WHERE id = #{id}
+    </delete>
 
 
 </mapper>

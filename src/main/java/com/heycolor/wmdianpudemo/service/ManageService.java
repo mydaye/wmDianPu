@@ -73,9 +73,33 @@ public class ManageService {
     }
 
     public void saveXlist(xlist xlist) {
+        // 参数不能为空
+        if(xlist.isNull())
+            throw new BuzException("参数不能为空");
+        if(xlist.getId() == -1){
+            // 新增
+            try {
+                manageMapper.addXlist(xlist);
+            }catch (Exception e){
+                throw new BuzException("新增失败");
+            }
+        }else{
+            //修改
+            try{
+                manageMapper.updateXlist(xlist);
+            }catch (Exception e){
+                throw new BuzException("修改失败");
+            }
+        }
+
     }
 
     public void deleteXlist(int id) {
+        try{
+            manageMapper.deleteXlist(id);
+        }catch (Exception e){
+            throw new BuzException("删除失败");
+        }
     }
 
     public List<xlist> getXlist(ListPage listPage) {
@@ -83,9 +107,32 @@ public class ManageService {
     }
 
     public void saveYlist(ylist ylist) {
+        // 参数不能为空
+        if(ylist.isNull())
+            throw new BuzException("参数不能为空");
+        if(ylist.getId() == -1){
+            // 新增
+            try {
+                manageMapper.addYlist(ylist);
+            }catch (Exception e){
+                throw new BuzException("新增失败");
+            }
+        }else{
+            //修改
+            try{
+                manageMapper.updateYlist(ylist);
+            }catch (Exception e){
+                throw new BuzException("修改失败");
+            }
+        }
     }
 
     public void deleteYlist(int id) {
+        try{
+            manageMapper.deleteYlist(id);
+        }catch (Exception e){
+            throw new BuzException("删除失败");
+        }
     }
 
     public List<xlist> getYlist(ListPage listPage) {
