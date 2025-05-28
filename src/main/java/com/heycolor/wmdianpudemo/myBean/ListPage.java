@@ -4,8 +4,18 @@ public class ListPage {
 
     private int pageIndex;
     private int pageSize;
+    private int pageStart;
 
     private Object data;
+
+
+    public int getPageStart() {
+        return pageStart;
+    }
+
+    public void setPageStart(int pageStart) {
+        this.pageStart = pageStart;
+    }
 
 
     public int getPageIndex() {

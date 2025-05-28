@@ -16,8 +16,8 @@
         VALUE (#{showtype},#{txt1}, #{txt2})
     </insert>
     <insert id="addYlist">
-        INSERT INTO ylist (tuPianUrl, txt1, txt2, txt3, txt4, txt5, txt6, txt7, txt8, txt9, txt10, txt11, txt12 )
-        VALUES (#{tuPianUrl}, #{txt1}, #{txt2}, #{txt3}, #{txt4}, #{txt5}, #{txt6}, #{txt7}, #{txt8}, #{txt9}, #{txt10}, #{txt11}, #{txt12})
+        INSERT INTO ylist (xid,tuPianUrl, txt1, txt2, txt3, txt4, txt5, txt6, txt7, txt8, txt9, txt10, txt11, txt12 )
+        VALUES (#{xid},#{tuPianUrl}, #{txt1}, #{txt2}, #{txt3}, #{txt4}, #{txt5}, #{txt6}, #{txt7}, #{txt8}, #{txt9}, #{txt10}, #{txt11}, #{txt12})
     </insert>
     <update id="updateAdmin" >
         UPDATE admin
@@ -50,7 +50,8 @@
     </update>
     <update id="updateYlist">
         UPDATE ylist
-        SET tuPianUrl = #{tuPianUrl},
+        SET xid = #{xid},
+            tuPianUrl = #{tuPianUrl},
             txt1 = #{txt1},
             txt2 = #{txt2},
             txt3 = #{txt3},
@@ -73,6 +74,30 @@
     <delete id="deleteYlist">
         DELETE FROM ylist WHERE id = #{id}
     </delete>
+    <select id="getXlist" resultType="com.heycolor.wmdianpudemo.myBean.xlist">
+        SELECT x.* FROM xlist x
+                            INNER JOIN (
+            SELECT id FROM xlist
+            ORDER BY id DESC
+            LIMIT #{pageSize} OFFSET #{pageStart}
+        ) AS tmp ON x.id = tmp.id
+        ORDER BY x.id ASC ;
+    </select>
+    <select id="getYlist" resultType="com.heycolor.wmdianpudemo.myBean.xlist">
+        SELECT x.* FROM ylist x
+                            INNER JOIN (
+            SELECT id FROM ylist
+            ORDER BY id DESC
+            LIMIT #{pageSize} OFFSET #{pageStart}
+        ) AS tmp ON x.id = tmp.id
+        ORDER BY x.id ASC;
+    </select>
+    <select id="checkXid" resultType="java.lang.Boolean">
+        SELECT EXISTS(SELECT 1 FROM xlist WHERE id = #{id});
+    </select>
+    <select id="checkXidOnYlist" resultType="java.lang.Boolean">
+        SELECT EXISTS(SELECT 1 FROM ylist WHERE xid = #{id});
+    </select>
 
 
 </mapper>

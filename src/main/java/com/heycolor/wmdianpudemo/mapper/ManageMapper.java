@@ -1,10 +1,9 @@
 package com.heycolor.wmdianpudemo.mapper;
 
-import com.heycolor.wmdianpudemo.myBean.admin;
-import com.heycolor.wmdianpudemo.myBean.minfo;
-import com.heycolor.wmdianpudemo.myBean.xlist;
-import com.heycolor.wmdianpudemo.myBean.ylist;
+import com.heycolor.wmdianpudemo.myBean.*;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 @Mapper
 public interface ManageMapper {
@@ -28,4 +27,12 @@ public interface ManageMapper {
     void addYlist(ylist ylist);
 
     void updateYlist(ylist ylist);
+
+    List<xlist> getXlist(ListPage listPage);
+
+    List<xlist> getYlist(ListPage listPage);
+
+    boolean checkXid(int xid);
+
+    boolean checkXidOnYlist(int id);
 }
