@@ -6,6 +6,7 @@ public class xlist {
     private String txt1;
     private String txt2;
 
+
     public int getId() {
         return id;
     }

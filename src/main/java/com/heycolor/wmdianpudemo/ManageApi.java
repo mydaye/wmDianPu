@@ -37,7 +37,7 @@ public class ManageApi {
 
     // 添加管理员-管理员信息修改
     @PostMapping("/save")
-    public ResponseEntity<ReturnInfo> login(@RequestBody admin admin) {
+    public ResponseEntity<ReturnInfo> saveAdmin(@RequestBody admin admin) {
         try {
             manageService.saveAdmin(admin);
             return ResponseEntity.ok()

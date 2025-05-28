@@ -15,6 +15,11 @@ public class minfo {
     private String pingjia;
     private String imgdz;
 
+    // 检验是否为空
+    public boolean isNull() {
+        return mp4 == null || imgtx1 == null || txt1 == null || biaojia == null || imgtx2 == null || txt2 == null || txt3 == null || txt4 == null || txt5 == null || marqueeText == null || pingjia == null || imgdz == null;
+    }
+
     public int getId() {
         return id;
     }

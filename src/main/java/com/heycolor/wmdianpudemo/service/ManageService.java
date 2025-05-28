@@ -49,6 +49,27 @@ public class ManageService {
     }
 
     public void saveMinfo(minfo minfo) {
+        // 参数不能为空
+        if(minfo.isNull())
+            throw new BuzException("参数不能为空");
+
+        if(minfo.getId() == -1){
+            // 新增
+            try {
+                manageMapper.addMinfo(minfo);
+            }catch (Exception e){
+                throw new BuzException("新增失败");
+            }
+        }else{
+            //修改
+            try{
+                manageMapper.updateMinfo(minfo);
+            }catch (Exception e){
+                throw new BuzException("修改失败");
+            }
+        }
+
+
     }
 
     public void saveXlist(xlist xlist) {

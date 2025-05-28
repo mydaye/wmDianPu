@@ -7,10 +7,30 @@
         INSERT INTO admin (apptype, code)
         VALUES (#{apptype}, #{code})
     </insert>
+    <insert id="addMinfo">
+        INSERT INTO minfo (mp4, imgtx1, txt1, biaojia, imgtx2, txt2, txt3, txt4, txt5, marqueeText, pingjia,imgdz)
+        VALUE (#{mp4}, #{imgtx1}, #{txt1}, #{biaojia}, #{imgtx2}, #{txt2}, #{txt3}, #{txt4}, #{txt5}, #{marqueeText}, #{pingjia},#{imgdz})
+    </insert>
     <update id="updateAdmin" >
         UPDATE admin
         SET apptype = #{apptype},
             code    = #{code}
+        WHERE id = #{id};
+    </update>
+    <update id="updateMinfo">
+        UPDATE minfo
+        SET mp4 = #{mp4},
+            imgtx1 = #{imgtx1},
+            txt1 = #{txt1},
+            biaojia = #{biaojia},
+            imgtx2 = #{imgtx2},
+            txt2 = #{txt2},
+            txt3 = #{txt3},
+            txt4 = #{txt4},
+            txt5 = #{txt5},
+            marqueeText = #{marqueeText},
+            pingjia = #{pingjia},
+            imgdz = #{imgdz}
         WHERE id = #{id};
     </update>
 
