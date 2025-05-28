@@ -7,16 +7,14 @@ import com.heycolor.wmdianpudemo.service.ManageService;
 import com.heycolor.wmdianpudemo.constant.BuzException;
 import jakarta.annotation.Resource;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static com.heycolor.wmdianpudemo.constant.StateCode.SUCCESS;
+import static com.heycolor.wmdianpudemo.constant.StateCode.*;
 
-@RestController("/admin")
+@RestController
+@RequestMapping("/admin")
 public class ManageApi {
 
 
@@ -34,7 +32,7 @@ public class ManageApi {
                     .body(ReturnInfo.res(SUCCESS, "", null));
         } catch (Exception e) {
             return ResponseEntity.badRequest()
-                    .body(ReturnInfo.res(SUCCESS, e.getMessage(), null));
+                    .body(ReturnInfo.res(FAILED, e.getMessage(), null));
         }
     }
 
@@ -47,7 +45,7 @@ public class ManageApi {
                     .body(ReturnInfo.res(SUCCESS, "", null));
         } catch (Exception e) {
             return ResponseEntity.badRequest()
-                    .body(ReturnInfo.res(SUCCESS, e.getMessage(), null));
+                    .body(ReturnInfo.res(FAILED, e.getMessage(), null));
         }
     }
 
@@ -60,7 +58,7 @@ public class ManageApi {
                     .body(ReturnInfo.res(SUCCESS, "", null));
         } catch (Exception e) {
             return ResponseEntity.badRequest()
-                    .body(ReturnInfo.res(SUCCESS, e.getMessage(), null));
+                    .body(ReturnInfo.res(FAILED, e.getMessage(), null));
         }
     }
 
@@ -73,7 +71,7 @@ public class ManageApi {
                     .body(ReturnInfo.res(SUCCESS, "", null));
         } catch (Exception e) {
             return ResponseEntity.badRequest()
-                    .body(ReturnInfo.res(SUCCESS, e.getMessage(), null));
+                    .body(ReturnInfo.res(FAILED, e.getMessage(), null));
         }
     }
 
@@ -86,7 +84,7 @@ public class ManageApi {
                     .body(ReturnInfo.res(SUCCESS, "", null));
         } catch (Exception e) {
             return ResponseEntity.badRequest()
-                    .body(ReturnInfo.res(SUCCESS, e.getMessage(), null));
+                    .body(ReturnInfo.res(FAILED, e.getMessage(), null));
         }
     }
 
@@ -98,7 +96,7 @@ public class ManageApi {
                     .body(ReturnInfo.res(SUCCESS, "", list));
         } catch (Exception e) {
             return ResponseEntity.badRequest()
-                    .body(ReturnInfo.res(SUCCESS, e.getMessage(), null));
+                    .body(ReturnInfo.res(FAILED, e.getMessage(), null));
         }
 
     }
@@ -112,7 +110,7 @@ public class ManageApi {
                     .body(ReturnInfo.res(SUCCESS, "", null));
         } catch (Exception e) {
             return ResponseEntity.badRequest()
-                    .body(ReturnInfo.res(SUCCESS, e.getMessage(), null));
+                    .body(ReturnInfo.res(FAILED, e.getMessage(), null));
         }
     }
 
@@ -125,7 +123,7 @@ public class ManageApi {
                     .body(ReturnInfo.res(SUCCESS, "", null));
         } catch (Exception e) {
             return ResponseEntity.badRequest()
-                    .body(ReturnInfo.res(SUCCESS, e.getMessage(), null));
+                    .body(ReturnInfo.res(FAILED, e.getMessage(), null));
         }
     }
 
@@ -137,7 +135,7 @@ public class ManageApi {
                     .body(ReturnInfo.res(SUCCESS, "", list));
         } catch (Exception e) {
             return ResponseEntity.badRequest()
-                    .body(ReturnInfo.res(SUCCESS, e.getMessage(), null));
+                    .body(ReturnInfo.res(FAILED, e.getMessage(), null));
         }
 
     }
