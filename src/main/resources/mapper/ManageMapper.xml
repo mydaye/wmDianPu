@@ -3,5 +3,16 @@
 
 <mapper namespace="com.heycolor.wmdianpudemo.mapper.ManageMapper">
 
+    <insert id="addAdmin" >
+        INSERT INTO admin (apptype, code)
+        VALUES (#{apptype}, #{code})
+    </insert>
+    <update id="updateAdmin" >
+        UPDATE admin
+        SET apptype = #{apptype},
+            code    = #{code}
+        WHERE id = #{id};
+    </update>
+
 
 </mapper>
