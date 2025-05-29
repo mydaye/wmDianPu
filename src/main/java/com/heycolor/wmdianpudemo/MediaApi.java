@@ -2,6 +2,7 @@ package com.heycolor.wmdianpudemo;
 
 import com.heycolor.wmdianpudemo.constant.ReturnInfo;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -58,6 +59,16 @@ public class MediaApi {
             // 验证文件类型
             if (!isValidFileType(file, allowedTypes)) {
                 return ResponseEntity.badRequest().body(ReturnInfo.res(FAILED, "不支持的文件类型", null));
+            }
+
+            // 检查文件大小（示例限制为20MB）
+            long MAX_FILE_SIZE = 20L * 1024 * 1024; // 20MB in bytes
+            if (file.getSize() > MAX_FILE_SIZE) {
+                return ResponseEntity.status(HttpStatus.PAYLOAD_TOO_LARGE)
+                        .body(ReturnInfo.res(FAILED,
+                                String.format("文件大小超过限制（最大允许 %.2fMB）",
+                                        MAX_FILE_SIZE / (1024.0 * 1024.0)),
+                                null));
             }
 
             // 创建上传目录（如果不存在）
