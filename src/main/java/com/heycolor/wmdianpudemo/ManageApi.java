@@ -35,6 +35,19 @@ public class ManageApi {
         }
     }
 
+    // 获取管理员列表
+    @PostMapping("/list")
+    public ResponseEntity<ReturnInfo> getAdminList(@RequestBody ListPage listPage) {
+        try {
+            List<admin> list = manageService.getAdminList(listPage);
+            return ResponseEntity.ok()
+                    .body(ReturnInfo.res(SUCCESS, "", list));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest()
+                    .body(ReturnInfo.res(FAILED, e.getMessage(), null));
+        }
+    }
+
     // 添加管理员-管理员信息修改
     @PostMapping("/save")
     public ResponseEntity<ReturnInfo> saveAdmin(@RequestBody admin admin) {

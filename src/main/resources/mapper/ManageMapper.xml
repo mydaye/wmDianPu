@@ -98,6 +98,15 @@
     <select id="checkXidOnYlist" resultType="java.lang.Boolean">
         SELECT EXISTS(SELECT 1 FROM ylist WHERE xid = #{id});
     </select>
+    <select id="getAdminList">
+        SELECT x.* FROM admin x
+                            INNER JOIN (
+            SELECT id FROM admin
+            ORDER BY id DESC
+            LIMIT #{pageSize} OFFSET #{pageStart}
+        ) AS tmp ON x.id = tmp.id
+        ORDER BY x.id ASC;
+    </select>
 
 
 </mapper>

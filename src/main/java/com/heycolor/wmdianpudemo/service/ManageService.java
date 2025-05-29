@@ -172,4 +172,14 @@ public class ManageService {
 
         return manageMapper.getYlist(listPage);
     }
+
+    public List<admin> getAdminList(ListPage listPage) {
+        // 参数不能为空
+        if (listPage.getPageIndex() == 0 || listPage.getPageSize() == 0)
+            throw new BuzException("参数不能为空");
+
+        listPage.setPageStart((listPage.getPageIndex() - 1) * listPage.getPageSize());
+
+        return manageMapper.getAdminList(listPage);
+    }
 }
