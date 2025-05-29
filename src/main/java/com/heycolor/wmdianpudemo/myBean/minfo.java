@@ -14,6 +14,7 @@ public class minfo {
     private String marqueeText;
     private String pingjia;
     private String imgdz;
+    private boolean showdz;
 
     // 检验是否为空
     public boolean isNull() {
@@ -122,5 +123,13 @@ public class minfo {
 
     public void setImgdz(String imgdz) {
         this.imgdz = imgdz;
+    }
+
+    public boolean isShowdz() {
+        return showdz;
+    }
+
+    public void setShowdz(boolean showdz) {
+        this.showdz = showdz;
     }
 }

@@ -8,8 +8,8 @@
         VALUES (#{apptype}, #{code})
     </insert>
     <insert id="addMinfo">
-        INSERT INTO minfo (mp4, imgtx1, txt1, biaojia, imgtx2, txt2, txt3, txt4, txt5, marqueeText, pingjia,imgdz)
-        VALUE (#{mp4}, #{imgtx1}, #{txt1}, #{biaojia}, #{imgtx2}, #{txt2}, #{txt3}, #{txt4}, #{txt5}, #{marqueeText}, #{pingjia},#{imgdz})
+        INSERT INTO minfo (mp4, imgtx1, txt1, biaojia, imgtx2, txt2, txt3, txt4, txt5, marqueeText, pingjia,imgdz,showdz)
+        VALUE (#{mp4}, #{imgtx1}, #{txt1}, #{biaojia}, #{imgtx2}, #{txt2}, #{txt3}, #{txt4}, #{txt5}, #{marqueeText}, #{pingjia},#{imgdz},#{showdz})
     </insert>
     <insert id="addXlist">
         INSERT INTO  xlist (showtype,txt1,txt2)
@@ -38,7 +38,8 @@
             txt5 = #{txt5},
             marqueeText = #{marqueeText},
             pingjia = #{pingjia},
-            imgdz = #{imgdz}
+            imgdz = #{imgdz},
+            showdz = #{showdz}
         WHERE id = #{id};
     </update>
     <update id="updateXlist">
