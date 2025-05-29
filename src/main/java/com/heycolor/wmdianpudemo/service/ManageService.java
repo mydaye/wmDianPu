@@ -182,4 +182,16 @@ public class ManageService {
 
         return manageMapper.getAdminList(listPage);
     }
+
+    public int getXlistTotal() {
+        return manageMapper.getXlistTotal();
+    }
+
+    public int getYlistTotal() {
+        return manageMapper.getYlistTotal();
+    }
+
+    public int getAdminTotal() {
+        return manageMapper.getAdminTotal();
+    }
 }

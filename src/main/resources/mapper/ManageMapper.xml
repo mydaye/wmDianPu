@@ -107,6 +107,15 @@
         ) AS tmp ON x.id = tmp.id
         ORDER BY x.id ASC;
     </select>
+    <select id="getXlistTotal" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM xlist;
+    </select>
+    <select id="getYlistTotal" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM ylist;
+    </select>
+    <select id="getAdminTotal" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM admin;
+    </select>
 
 
 </mapper>

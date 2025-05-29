@@ -37,4 +37,10 @@ public interface ManageMapper {
     boolean checkXidOnYlist(int id);
 
     List<admin> getAdminList(ListPage listPage);
+
+    int getXlistTotal();
+
+    int getYlistTotal();
+
+    int getAdminTotal();
 }

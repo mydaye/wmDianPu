@@ -39,9 +39,10 @@ public class ManageApi {
     @PostMapping("/list")
     public ResponseEntity<ReturnInfo> getAdminList(@RequestBody ListPage listPage) {
         try {
-            List<admin> list = manageService.getAdminList(listPage);
+            listPage.setData(manageService.getAdminList(listPage));
+            listPage.setTotal(manageService.getAdminTotal());
             return ResponseEntity.ok()
-                    .body(ReturnInfo.res(SUCCESS, "", list));
+                    .body(ReturnInfo.res(SUCCESS, "", listPage));
         } catch (Exception e) {
             return ResponseEntity.badRequest()
                     .body(ReturnInfo.res(FAILED, e.getMessage(), null));
@@ -103,9 +104,10 @@ public class ManageApi {
     @PostMapping("/xlist/list")
     public ResponseEntity<ReturnInfo> getXlist(@RequestBody ListPage listPage) {
         try {
-            List<xlist> list = manageService.getXlist(listPage);
+            listPage.setData(manageService.getXlist(listPage));
+            listPage.setTotal(manageService.getXlistTotal());
             return ResponseEntity.ok()
-                    .body(ReturnInfo.res(SUCCESS, "", list));
+                    .body(ReturnInfo.res(SUCCESS, "", listPage));
         } catch (Exception e) {
             return ResponseEntity.badRequest()
                     .body(ReturnInfo.res(FAILED, e.getMessage(), null));
@@ -142,9 +144,10 @@ public class ManageApi {
     @PostMapping("/ylist/list")
     public ResponseEntity<ReturnInfo> getYlist(@RequestBody ListPage listPage) {
         try {
-            List<xlist> list = manageService.getYlist(listPage);
+            listPage.setData(manageService.getYlist(listPage));
+            listPage.setTotal(manageService.getXlistTotal());
             return ResponseEntity.ok()
-                    .body(ReturnInfo.res(SUCCESS, "", list));
+                    .body(ReturnInfo.res(SUCCESS, "", listPage));
         } catch (Exception e) {
             return ResponseEntity.badRequest()
                     .body(ReturnInfo.res(FAILED, e.getMessage(), null));
