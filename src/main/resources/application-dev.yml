@@ -1,0 +1,35 @@
+server:
+  port: 8080
+spring:
+  config:
+    activate:
+      on-profile:
+        - dev
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 40MB
+      enabled: true
+      file-size-threshold: 10MB
+  jackson:
+    time-zone: Asia/Shanghai
+    date-format: yyyy-MM-dd HH:mm:ss
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://47.116.85.166:3306/wmdianpu?characterEncoding=utf-8&useSsL=false&serverTimezone=UTC&serverTimezone =Asia/Shanghai
+    username: wmdianpu
+    password: w8N6znmbLZ4NFDSN
+    hikari:
+      max-lifetime: 1800000  # 设置为 30 分钟（比 MySQL 默认空闲超时时间短）
+      connection-test-query: SELECT 1
+      leak-detection-threshold: 2100 # 2秒检测连接泄露
+      connection-timeout: 30000  # 30秒的连接超时
+      idle-timeout: 600000  # 10分钟的空闲超时
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+#type-aliases-package: com.gengdemo.mybatis.entity
+
+
+# 自定义存储路径
+imagePath: D:\www\image\
+videoPath: D:\www\video\
