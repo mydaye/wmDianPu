@@ -145,7 +145,7 @@ public class ManageApi {
     public ResponseEntity<ReturnInfo> getYlist(@RequestBody ListPage listPage) {
         try {
             listPage.setData(manageService.getYlist(listPage));
-            listPage.setTotal(manageService.getXlistTotal());
+            listPage.setTotal(manageService.getYlistTotal());
             return ResponseEntity.ok()
                     .body(ReturnInfo.res(SUCCESS, "", listPage));
         } catch (Exception e) {
