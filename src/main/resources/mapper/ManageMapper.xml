@@ -79,16 +79,20 @@
                             INNER JOIN (
             SELECT id FROM xlist
             ORDER BY id DESC
-            LIMIT #{pageSize} OFFSET #{pageStart}
+            <if test="pageSize != -1">
+                LIMIT #{pageSize} OFFSET #{pageStart}
+            </if>
         ) AS tmp ON x.id = tmp.id
         ORDER BY x.id ASC ;
     </select>
-    <select id="getYlist" resultType="com.heycolor.wmdianpudemo.myBean.xlist">
+    <select id="getYlist" resultType="com.heycolor.wmdianpudemo.myBean.ylist">
         SELECT x.* FROM ylist x
                             INNER JOIN (
             SELECT id FROM ylist
             ORDER BY id DESC
-            LIMIT #{pageSize} OFFSET #{pageStart}
+            <if test="pageSize != -1">
+                LIMIT #{pageSize} OFFSET #{pageStart}
+            </if>
         ) AS tmp ON x.id = tmp.id
         ORDER BY x.id ASC;
     </select>
@@ -98,12 +102,14 @@
     <select id="checkXidOnYlist" resultType="java.lang.Boolean">
         SELECT EXISTS(SELECT 1 FROM ylist WHERE xid = #{id});
     </select>
-    <select id="getAdminList">
+    <select id="getAdminList" resultType="com.heycolor.wmdianpudemo.myBean.admin">
         SELECT x.* FROM admin x
                             INNER JOIN (
             SELECT id FROM admin
             ORDER BY id DESC
-            LIMIT #{pageSize} OFFSET #{pageStart}
+            <if test="pageSize != -1">
+                LIMIT #{pageSize} OFFSET #{pageStart}
+            </if>
         ) AS tmp ON x.id = tmp.id
         ORDER BY x.id ASC;
     </select>

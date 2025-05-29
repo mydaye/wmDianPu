@@ -30,7 +30,7 @@ public interface ManageMapper {
 
     List<xlist> getXlist(ListPage listPage);
 
-    List<xlist> getYlist(ListPage listPage);
+    List<ylist> getYlist(ListPage listPage);
 
     boolean checkXid(int xid);
 

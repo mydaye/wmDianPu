@@ -163,7 +163,7 @@ public class ManageService {
         }
     }
 
-    public List<xlist> getYlist(ListPage listPage) {
+    public List<ylist> getYlist(ListPage listPage) {
         // 参数不能为空
         if (listPage.getPageIndex() == 0 || listPage.getPageSize() == 0)
             throw new BuzException("参数不能为空");
