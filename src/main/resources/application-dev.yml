@@ -16,9 +16,9 @@ spring:
     date-format: yyyy-MM-dd HH:mm:ss
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://47.116.85.166:3306/wmdianpu?characterEncoding=utf-8&useSsL=false&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://47.121.128.9:3306/wmdianpu?characterEncoding=utf-8&useSsL=false&serverTimezone=Asia/Shanghai
     username: wmdianpu
-    password: w8N6znmbLZ4NFDSN
+    password: TF3TacL7nLkSh5pj
     hikari:
       # 最大存活时间：连接最多存活 10 分钟（600000 毫秒），
       # 超过这个时间就被回收，避免被 MySQL 提前断开导致错误
