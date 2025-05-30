@@ -43,4 +43,6 @@ public interface ManageMapper {
     int getYlistTotal();
 
     int getAdminTotal();
+
+    minfo getMinfo();
 }

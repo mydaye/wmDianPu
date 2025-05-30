@@ -62,7 +62,19 @@ public class ManageApi {
         }
     }
 
-    // minifo修改参数
+    // 获取minifo参数
+    @GetMapping("/minfo")
+    public ResponseEntity<ReturnInfo> getMinfo() {
+        try {
+            return ResponseEntity.ok()
+                    .body(ReturnInfo.res(SUCCESS, "", manageService.getMinfo()));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest()
+                    .body(ReturnInfo.res(FAILED, e.getMessage(), null));
+        }
+    }
+
+    // minfo修改参数
     @PostMapping("/minfo/save")
     public ResponseEntity<ReturnInfo> saveMinfo(@RequestBody minfo minfo) {
         try {

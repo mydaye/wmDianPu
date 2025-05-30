@@ -123,6 +123,9 @@
     <select id="getAdminTotal" resultType="java.lang.Integer">
         SELECT COUNT(*) FROM admin;
     </select>
+    <select id="getMinfo" resultType="com.heycolor.wmdianpudemo.myBean.minfo">
+        SELECT x.* FROM minfo x where x.id = 1;
+    </select>
 
 
 </mapper>

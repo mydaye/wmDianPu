@@ -50,8 +50,8 @@ public class ManageService {
 
     public void saveMinfo(minfo minfo) {
         // 参数不能为空
-        if (minfo.isNull())
-            throw new BuzException("参数不能为空");
+//        if (minfo.isNull())
+//            throw new BuzException("参数不能为空");
 
         if (minfo.getId() == -1) {
             // 新增
@@ -193,5 +193,9 @@ public class ManageService {
 
     public int getAdminTotal() {
         return manageMapper.getAdminTotal();
+    }
+
+    public minfo getMinfo() {
+        return manageMapper.getMinfo();
     }
 }
