@@ -16,15 +16,28 @@ spring:
     date-format: yyyy-MM-dd HH:mm:ss
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://47.116.85.166:3306/wmdianpu?characterEncoding=utf-8&useSsL=false&serverTimezone=UTC&serverTimezone =Asia/Shanghai
+    url: jdbc:mysql://47.116.85.166:3306/wmdianpu?characterEncoding=utf-8&useSsL=false&serverTimezone=Asia/Shanghai
     username: wmdianpu
     password: w8N6znmbLZ4NFDSN
     hikari:
-      max-lifetime: 1800000  # 设置为 30 分钟（比 MySQL 默认空闲超时时间短）
+      # 最大存活时间：连接最多存活 10 分钟（600000 毫秒），
+      # 超过这个时间就被回收，避免被 MySQL 提前断开导致错误
+      max-lifetime: 600000
+      # 空闲连接在连接池中最多存活时间：5 分钟后未使用就回收
+      idle-timeout: 300000
+      # 校验连接有效性的超时时间（3 秒）
+      # 超过这个时间还没响应就认为无效连接
+      validation-timeout: 3000
+      # 获取连接的最大等待时间（30 秒）
+      # 如果超过这个时间还没有空闲连接可用，则抛异常
+      connection-timeout: 30000
+      # 最小空闲连接数（保持池中至少有这么多空闲连接）
+      minimum-idle: 5
+      # 最大连接数（整个连接池最多允许的连接数）
+      maximum-pool-size: 10
+      # 校验连接是否有效用的 SQL（建议设置）
+      # 每次获取连接前执行这条语句检查连接是否还活着
       connection-test-query: SELECT 1
-      leak-detection-threshold: 2100 # 2秒检测连接泄露
-      connection-timeout: 30000  # 30秒的连接超时
-      idle-timeout: 600000  # 10分钟的空闲超时
 mybatis:
   mapper-locations: classpath:mapper/*.xml
 #type-aliases-package: com.gengdemo.mybatis.entity
