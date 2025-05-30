@@ -44,5 +44,5 @@ mybatis:
 
 
 # 自定义存储路径
-imagePath: "uploads/images/"
-videoPath: "uploads/videos/"
+imagePath: /www/wwwroot/wmdianpu/image/
+videoPath: /www/wwwroot/wmdianpu/video/
