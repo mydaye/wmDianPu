@@ -5,6 +5,7 @@ import com.heycolor.wmdianpudemo.constant.BuzException;
 import com.heycolor.wmdianpudemo.mapper.ManageMapper;
 import com.heycolor.wmdianpudemo.myBean.*;
 import jakarta.annotation.Resource;
+import org.mybatis.logging.Logger;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -146,10 +147,13 @@ public class ManageService {
             //修改
             try {
                 // 检测 ylist中的xid是否存在
-                if (manageMapper.checkXid(ylist.getXid()))
+                if (!manageMapper.checkXid(ylist.getXid()))
                     throw new BuzException("类目不存在");
                 manageMapper.updateYlist(ylist);
-            } catch (Exception e) {
+            }catch (BuzException e) {
+                throw e; // 业务异常直接抛出
+            }
+            catch (Exception e) {
                 throw new BuzException("修改失败");
             }
         }

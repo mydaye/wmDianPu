@@ -4,6 +4,7 @@ import com.heycolor.wmdianpudemo.constant.ReturnInfo;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Random;
@@ -39,17 +41,17 @@ public class MediaApi {
 
     // 上传图片
     @PostMapping("/image")
-    public ResponseEntity<ReturnInfo> uploadImage(@RequestParam("file") MultipartFile file) {
-        return handleFileUpload(file, imageUploadPath, IMAGE_TYPES);
+    public ResponseEntity<ReturnInfo> uploadImage(@RequestParam("file") MultipartFile file,@RequestParam("old") String oldFile) {
+        return handleFileUpload(file,oldFile, imageUploadPath, IMAGE_TYPES);
     }
 
     // 上传视频
     @PostMapping("/video")
-    public ResponseEntity<ReturnInfo> uploadVideo(@RequestParam("file") MultipartFile file) {
-        return handleFileUpload(file, videoUploadPath, VIDEO_TYPES);
+    public ResponseEntity<ReturnInfo> uploadVideo(@RequestParam("file") MultipartFile file,@RequestParam("old") String oldFile) {
+        return handleFileUpload(file,oldFile, videoUploadPath, VIDEO_TYPES);
     }
 
-    private ResponseEntity<ReturnInfo> handleFileUpload(MultipartFile file, String uploadPath, String[] allowedTypes) {
+    private ResponseEntity<ReturnInfo> handleFileUpload(MultipartFile file,String oldFile, String uploadPath, String[] allowedTypes) {
         try {
             // 检查文件是否为空
             if (file.isEmpty()) {
@@ -86,6 +88,31 @@ public class MediaApi {
             Path path = Paths.get(uploadPath + uniqueFileName);
             Files.write(path, file.getBytes());
 
+            //检测是否有旧文件，有的话删除
+            // 旧文件在同目录 文件名为oldFile
+            // 删除旧文件（如果存在且合法）
+            if (StringUtils.hasText(oldFile)) {
+                try {
+                    Path oldFilePath = Paths.get(uploadPath, oldFile);
+
+                    // 安全验证：确保旧文件在指定目录内
+                    if (isValidFilePath(oldFilePath, uploadPath)) {
+                        if (Files.exists(oldFilePath)) {
+                            Files.delete(oldFilePath);
+//                            log.info("已删除旧文件: {}", oldFilePath);
+                        } else {
+//                            log.warn("旧文件不存在: {}", oldFilePath);
+                        }
+                    } else {
+//                        log.warn("非法文件路径尝试: {}", oldFilePath);
+                    }
+                } catch (Exception e) {
+                    // 删除失败不影响新文件上传，但记录日志
+//                    log.error("删除旧文件失败: " + oldFile, e);
+                }
+            }
+
+
             // 返回文件访问路径
 //            String fileAccessPath = "/uploads/" +
 //                    (uploadPath.contains("images") ? "images/" : "videos/")
@@ -108,6 +135,17 @@ public class MediaApi {
             }
         }
         return false;
+    }
+
+    // 辅助方法：验证文件路径是否在允许的目录内
+    private boolean isValidFilePath(Path filePath, String basePath) {
+        try {
+            Path normalizedBase = Paths.get(basePath).normalize().toAbsolutePath();
+            Path normalizedFile = filePath.normalize().toAbsolutePath();
+            return normalizedFile.startsWith(normalizedBase);
+        } catch (InvalidPathException e) {
+            return false;
+        }
     }
 
     private static final String CHARSET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";

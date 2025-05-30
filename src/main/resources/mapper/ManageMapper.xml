@@ -98,7 +98,7 @@
         ORDER BY x.id ASC;
     </select>
     <select id="checkXid" resultType="java.lang.Boolean">
-        SELECT EXISTS(SELECT 1 FROM xlist WHERE id = #{id});
+        SELECT EXISTS(SELECT 1 FROM xlist WHERE id = #{xid});
     </select>
     <select id="checkXidOnYlist" resultType="java.lang.Boolean">
         SELECT EXISTS(SELECT 1 FROM ylist WHERE xid = #{id});
