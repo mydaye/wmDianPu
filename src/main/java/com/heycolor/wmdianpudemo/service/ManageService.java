@@ -75,8 +75,8 @@ public class ManageService {
 
     public void saveXlist(xlist xlist) {
         // 参数不能为空
-        if (xlist.isNull())
-            throw new BuzException("参数不能为空");
+//        if (xlist.isNull())
+//            throw new BuzException("参数不能为空");
         if (xlist.getId() == -1) {
             // 新增
             try {
@@ -121,8 +121,8 @@ public class ManageService {
 
     public void saveYlist(ylist ylist) {
         // 参数不能为空
-        if (ylist.isNull())
-            throw new BuzException("参数不能为空");
+//        if (ylist.isNull())
+//            throw new BuzException("参数不能为空");
         if (ylist.getId() == -1) {
             // 新增操作
             try {

@@ -31,10 +31,7 @@ public class WebAPPConfigurer implements WebMvcConfigurer {
                 .allowedOriginPatterns(
                         "http://localhost:[*]",          // 开发环境（所有端口）
                         "http://127.0.0.1:[*]",         // 本地IP访问
-                        "http://shijiec.com:9090",           // 生产HTTP
-                        "http://www.shijiec.com:9090",       // 生产HTTP（带www）
-                        "https://shijiec.com:9090",          // 生产HTTPS
-                        "https://www.shijiec.com:9090"       // 生产HTTPS（带www）
+                        "http://47.121.128.9:9090"          // 生产HTTP
                 )
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("*")

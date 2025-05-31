@@ -17,9 +17,9 @@ public class ylist {
     private String txt11;
     private String txt12;
 
-    public boolean isNull() {
-        return tuPianUrl == null || txt1 == null || txt2 == null || txt3 == null || txt4 == null || txt5 == null || txt6 == null || txt7 == null || txt8 == null || txt9 == null || txt10 == null || txt11 == null || txt12 == null;
-    }
+//    public boolean isNull() {
+//        return tuPianUrl == null || txt1 == null || txt2 == null || txt3 == null || txt4 == null || txt5 == null || txt6 == null || txt7 == null || txt8 == null || txt9 == null || txt10 == null || txt11 == null || txt12 == null;
+//    }
 
     public int getId() {
         return id;

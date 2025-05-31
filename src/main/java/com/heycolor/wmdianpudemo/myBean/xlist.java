@@ -7,9 +7,9 @@ public class xlist {
     private String txt2;
 
     // 检验是否为空
-    public boolean isNull(){
-        return showtype == null || txt1 == null || txt2 == null;
-    }
+//    public boolean isNull(){
+//        return showtype == null || txt1 == null || txt2 == null;
+//    }
 
     public int getId() {
         return id;

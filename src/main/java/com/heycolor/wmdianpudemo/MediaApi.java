@@ -41,13 +41,13 @@ public class MediaApi {
 
     // 上传图片
     @PostMapping("/image")
-    public ResponseEntity<ReturnInfo> uploadImage(@RequestParam("file") MultipartFile file,@RequestParam("old") String oldFile) {
+    public ResponseEntity<ReturnInfo> uploadImage(@RequestParam("file") MultipartFile file,@RequestParam("oldFile") String oldFile) {
         return handleFileUpload(file,oldFile, imageUploadPath, IMAGE_TYPES);
     }
 
     // 上传视频
     @PostMapping("/video")
-    public ResponseEntity<ReturnInfo> uploadVideo(@RequestParam("file") MultipartFile file,@RequestParam("old") String oldFile) {
+    public ResponseEntity<ReturnInfo> uploadVideo(@RequestParam("file") MultipartFile file,@RequestParam("oldFile") String oldFile) {
         return handleFileUpload(file,oldFile, videoUploadPath, VIDEO_TYPES);
     }
 
